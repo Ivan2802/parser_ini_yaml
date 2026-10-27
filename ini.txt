@@ -1,0 +1,40 @@
+[wednesday]
+weekday = Среда
+short = Ср
+
+[wednesday.lesson.1]
+time_start = 8:10
+time_end = 9:40
+weeks = 2, 4, 6, 8, 12, 14, 16
+group = Информ СиППО 1
+room = 1405
+address = Кронверкский пр., д.49, лит.А
+subject = Информатика
+type = Лек
+format = Очно - дистанционный
+
+[thursday]
+weekday = Четверг
+short = Чт
+
+[thursday.lesson.1]
+time_start = 8:10
+time_end = 9:40
+weeks = 2, 6, 8, 10, 12, 14, 16
+group = Информ (повтор) 1
+room = 1405
+address = Кронверкский пр., д.49, лит.А
+subject = Информатика
+type = Лек
+format = Очно - дистанционный
+
+[thursday.lesson.2]
+time_start = 8:10
+time_end = 9:40
+weeks = 2, 6, 8, 10, 12, 14, 16
+group = Информ СиППО, КСиТ 2
+room = 1405
+address = Кронверкский пр., д.49, лит.А
+subject = Информатика
+type = Лек
+format = Очно - дистанционный
