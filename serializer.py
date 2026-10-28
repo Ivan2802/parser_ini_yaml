@@ -20,8 +20,8 @@ class Serializer:
                         file.write("  " + entry.key.value + ":")
                         file.write("\n")
                         for item in items_list:
-                            file.write("    - " + item)
+                            file.write("    -" + item)
                             file.write("\n")
                     else:
-                        file.write("  " + entry.key.value + ": " + entry.value.value)
+                        file.write("  " + entry.key.value + ":" + entry.value.value)
                         file.write("\n")

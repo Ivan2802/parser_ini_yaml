@@ -10,8 +10,9 @@ class Lexer:
         lines = self.text
         for i in range(len(lines)):
             line = lines[i]
-            line = line.replace(" ", "")
+            # line = line.replace(" ", "")
             if line[0] == self.token_dict["LB"]:
+                line = line.replace(" ", "")
                 t_lb = Token("LB", self.token_dict["LB"])
                 t_val = Token("VALUE", line[1:-2])
                 t_rb = Token("RB", self.token_dict["RB"])
@@ -21,7 +22,7 @@ class Lexer:
                 self.tokens.append(t_nl)
             else:
                 line = line.split(self.token_dict["EQ"])
-                t_k = Token("KEY", line[0])
+                t_k = Token("KEY", line[0].replace(" ", ""))
                 t_eq = Token("EQ", self.token_dict["EQ"])
                 t_v = Token("VALUE", line[-1].rstrip())
                 self.tokens.extend([t_k, t_eq, t_v])
