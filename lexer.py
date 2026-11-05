@@ -10,7 +10,6 @@ class Lexer:
         lines = self.text
         for i in range(len(lines)):
             line = lines[i]
-            # line = line.replace(" ", "")
             if line[0] == self.token_dict["LB"]:
                 line = line.replace(" ", "")
                 t_lb = Token("LB", self.token_dict["LB"])
