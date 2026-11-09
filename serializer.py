@@ -5,9 +5,12 @@ class Serializer:
     def serialize(self):
         tree = self.tree
         with open("yaml.yaml", "w", encoding="utf-8") as file:
+            for com in tree.comments:
+                file.write("# " + com.value.value)
             for g_entry in tree.entries:
-                file.write(g_entry.key.value + ": " + g_entry.value)
-                file.write("\n")
+                for e in g_entry:
+                    file.write(e.key.value + ": " + e.value.value)
+                    file.write("\n")
             for section_i in range(len(tree.sections)):
                 section = tree.sections[section_i]
                 if section_i != 0:

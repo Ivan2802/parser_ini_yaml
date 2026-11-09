@@ -3,6 +3,7 @@ class Parser:
         self.tokens = tokens
         self.pos = pos
     
+    comments_list = list()
     def parse_ini(self):
         section_list = list()
         entries_list = list()
@@ -13,7 +14,11 @@ class Parser:
                 entries_list.append(self.parse_entries())
             elif self.tokens[self.pos].type == "NL":
                 self.expect("NL")
-        return Ini(entries_list, section_list)
+            elif self.tokens[self.pos].type == "COM":
+                self.expect("COM")
+                c = self.expect("VALUE")
+                self.comments_list.append(Comment(c))
+        return Ini(self.comments_list, entries_list, section_list)
     
     def parse_section(self):
         self.expect("LB")
@@ -24,7 +29,11 @@ class Parser:
 
     def parse_entries(self):
         entries_list = list()
-        while self.pos < len(self.tokens) and self.tokens[self.pos].type == "KEY":
+        while self.pos < len(self.tokens) and (self.tokens[self.pos].type == "KEY" or self.tokens[self.pos].type == "COM"):
+            while self.pos < len(self.tokens) and self.tokens[self.pos].type == "COM":
+                self.expect("COM")
+                c = self.expect("VALUE")
+                self.comments_list.append(Comment(c))
             key = self.expect("KEY")
             self.expect("EQ")
             value = self.expect("VALUE")
@@ -41,9 +50,14 @@ class Parser:
         return t
     
 class Ini:
-    def __init__(self, entries, sections):
+    def __init__(self, comments, entries, sections):
+        self.comments = comments
         self.entries = entries
         self.sections = sections
+
+class Comment:
+    def __init__(self, value):
+        self.value = value
 
 class Section:
     def __init__(self, name, entries):

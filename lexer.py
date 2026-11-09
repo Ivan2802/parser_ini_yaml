@@ -3,7 +3,7 @@ class Lexer:
         self.text = text
         self.tokens = list()
 
-    token_dict = {"LB": "[", "RB": "]", "VALUE": "", "EQ": "=", "KEY": ""}
+    token_dict = {"LB": "[", "RB": "]", "VALUE": "", "EQ": "=", "KEY": "", "COM": ["#", ";"]}
     # add comments
 
     def tokenizate(self):
@@ -19,6 +19,10 @@ class Lexer:
             elif line[0] == '\n':
                 t_nl = Token("NL", "\n")
                 self.tokens.append(t_nl)
+            elif line[0] in self.token_dict["COM"]:
+                t_com = Token("COM", self.token_dict["COM"][0])
+                t_val = Token("VALUE", line[1:])
+                self.tokens.extend([t_com,t_val])
             else:
                 line = line.split(self.token_dict["EQ"])
                 t_k = Token("KEY", line[0].replace(" ", ""))
