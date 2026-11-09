@@ -2,3 +2,6 @@ __pycache__
 .gigacode_vsc
 ini.ini
 yaml.yaml
+file.xml
+file.yaml
+venv

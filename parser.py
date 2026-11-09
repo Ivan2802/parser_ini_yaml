@@ -40,8 +40,6 @@ class Parser:
             entries_list.append(Entry(key, value))
         return entries_list
     
-
-
     def expect(self, type):
         t = self.tokens[self.pos]
         if t.type != type:

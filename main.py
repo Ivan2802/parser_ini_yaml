@@ -8,7 +8,7 @@ def main():
         tokens = lexer.Lexer(text).tokenizate()
         as_tree = parser.Parser(tokens).parse_ini()
         translator = serializer.Serializer(as_tree)
-        translator.serialize()      
+        translator.serialize()
 
 if __name__ == "__main__":
     main()
